@@ -1,10 +1,5 @@
 # collector-react
-The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in [Dovetail](https://dovetailapp.com).
-
-## What you’ll need
-
-* A project on Dovetail
-* A project ID from Dovetail (found in the URL or in [collector settings](https://dovetailapp.com/help/collector-customize))
+The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in [Dovetail](https://dovetailapp.com). You’ll need a project on Dovetail, along with its project ID (found in the URL or in [collector settings](https://dovetailapp.com/help/collector-customize)).
 
 ## Example implementation
 
@@ -36,7 +31,7 @@ return class Example extends React.Component<{}, State> {
 }
 ```
 
-Note that `onSend` will be triggered after a 10 second delay, whereas `onDismiss` is triggered instantly when the user clicks the close icon.
+`onDismiss` is triggered instantly when the user clicks close. `onSend` will be triggered after a 10 second delay. 
 
 ## Configuration
 
