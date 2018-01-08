@@ -1,7 +1,7 @@
 {
   "name": "@heydovetail/collector-react",
   "version": "0.1.0",
-  "description": "",
+  "description": "The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in Dovetail.",
   "main": "./lib.commonjs/index.js",
   "module": "./lib.es2015/index.js",
   "types": "./lib.es2015/index.d.ts",
@@ -45,7 +45,7 @@
     "webpack": "^3.10.0"
   },
   "author": "Benjamin Humphrey <benjamin@dovetailapp.com>",
-  "license": "Apache 2",
+  "license": "Apache 2.0",
   "homepage": "https://github.com/heydovetail/collector-react",
   "jest": {
     "globals": {
