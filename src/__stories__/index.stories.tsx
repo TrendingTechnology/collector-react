@@ -18,7 +18,7 @@ storiesOf("Collector", module).add("Example", () => {
               backgroundImage: "url(https://images.unsplash.com/photo-1498598457418-36ef20772bb9",
               backgroundSize: "100%",
               height: "100vh",
-              margin: "-10px",
+              margin: "-8px",
               padding: "24px",
               width: "100vw"
             }}
@@ -34,7 +34,7 @@ storiesOf("Collector", module).add("Example", () => {
 
           {this.state.feedback ? (
             <Collector
-              domain="stg.dovetailapp.com"
+              domain="localhost:3000"
               onDismiss={() => {
                 this.setState({ feedback: false });
               }}
