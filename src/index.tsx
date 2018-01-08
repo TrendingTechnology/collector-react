@@ -68,7 +68,7 @@ export class Collector extends React.Component<Props> {
           break;
         }
         case "send": {
-          this.props.onSend ? this.props.onSend() : null;
+          this.props.onSend != undefined ? this.props.onSend() : null;
           break;
         }
       }
