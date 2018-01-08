@@ -1,0 +1,17 @@
+# tests
+src/__spec__
+
+# build tools
+.circleci
+.storybook
+src/__stories__
+
+# editor settings
+.editorconfig
+.prettierrc
+.vscode
+tsconfig.*
+tslint.json
+
+# npm
+npm-debug.log*
