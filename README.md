@@ -11,7 +11,7 @@ interface State {
   feedback: boolean;
 }
 
-return class Example extends React.Component<{}, State> {
+class Example extends React.Component<{}, State> {
   public state: State = { feedback: false };
 
   public render() {
@@ -24,7 +24,6 @@ return class Example extends React.Component<{}, State> {
             onDismiss={() => {
               this.setState({ feedback: false });
             }}
-            onSend={() => {}}
             projectId="yourProjectId"
           />
         ) : null}
@@ -32,9 +31,7 @@ return class Example extends React.Component<{}, State> {
     );
   }
 }
-```
-
-`onDismiss` is triggered instantly when the user clicks close. `onSend` will be triggered after a 10 second delay. 
+``` 
 
 ## Props
 
