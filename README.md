@@ -1,4 +1,6 @@
 # collector-react
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/heydovetail/collector-react.svg)](https://greenkeeper.io/)
 The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in [Dovetail](https://dovetailapp.com). You’ll need a project on Dovetail, along with its project ID (found in the URL or in [collector settings](https://dovetailapp.com/help/collector-customize)).
 
 ![Collector demo](img/demo.gif?raw=true "Collector demo")
