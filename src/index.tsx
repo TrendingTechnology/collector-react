@@ -2,9 +2,23 @@ import * as React from "react";
 import { Portal } from "./portal";
 
 export interface Props {
+  // Optional domain for where to fetch the dialog.
+  // Defaults to dovetailapp.com.
   domain?: string;
+
+  // Optional key:value pairs for setting default data.
+  // e.g. prefill user’s information if they’re logged in.
+  metadata?: {[key: string]: string};
+
+  // Called when the user clicks the X icon to close the dialog.
   onDismiss: () => void;
-  onSend: () => void;
+
+  // Optional handler for send.
+  // Called 10 seconds after the user clicks the send button.
+  onSend?: () => void;
+
+  // Project ID from Dovetail.
+  // Find this from the project URL in Dovetail or collector settings.
   projectId: string;
 }
 
@@ -22,13 +36,13 @@ export class Collector extends React.Component<Props> {
   }
 
   public render() {
-    const { domain = "dovetailapp.com", projectId } = this.props;
+    const { domain = "dovetailapp.com", metadata, projectId } = this.props;
 
     return (
       <Portal>
         <iframe
           frameBorder={0}
-          src={`//${domain}/embed/?pid=${projectId}&id=${this.id}`}
+          src={`//${domain}/embed/?pid=${projectId}&id=${this.id}&metadata=${JSON.stringify(metadata)}`}
           style={{
             background: "rgba(114, 109, 130, 0.5)",
             bottom: 0,
@@ -54,7 +68,7 @@ export class Collector extends React.Component<Props> {
           break;
         }
         case "send": {
-          this.props.onSend();
+          this.props.onSend ? this.props.onSend() : null;
           break;
         }
       }

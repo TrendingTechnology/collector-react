@@ -35,6 +35,31 @@ return class Example extends React.Component<{}, State> {
 
 `onDismiss` is triggered instantly when the user clicks close. `onSend` will be triggered after a 10 second delay. 
 
+## Props
+
+```jsx
+interface Props {
+  // Optional domain for where to fetch the dialog.
+  // Defaults to dovetailapp.com.
+  domain?: string;
+
+  // Optional key:value pairs for setting default data.
+  // e.g. prefill user’s information if they’re logged in.
+  metadata?: {[key: string]: string};
+
+  // Called when the user clicks the X icon to close the dialog.
+  onDismiss: () => void;
+
+  // Optional handler for send.
+  // Called 10 seconds after the user clicks the send button.
+  onSend?: () => void;
+
+  // Project ID from Dovetail.
+  // Find this from the project URL in Dovetail or collector settings.
+  projectId: string;
+}
+```
+
 ## Configuration
 
 Configure the look & feel in your Dovetail project. You can customize the color, text, where entries are saved, and more. Read the [customization documentation](https://dovetailapp.com/help/collector-customize) for more information.
