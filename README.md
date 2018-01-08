@@ -4,9 +4,18 @@ The feedback collector is a simple form that helps you quickly gather user feedb
 
 ![Collector demo](img/demo.gif?raw=true "Collector demo")
 
+## Installation
+
+```bash
+npm i @heydovetail/collector-react
+```
+
 ## Example implementation
 
 ```jsx
+import { Collector } from "@heydovetail/collector-react"
+import * as React from "react";
+
 interface State {
   feedback: boolean;
 }
