@@ -42,7 +42,7 @@ export class Collector extends React.Component<Props> {
       <Portal>
         <iframe
           frameBorder={0}
-          src={`//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&metadata=${JSON.stringify(metadata)}`}
+          src={`//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&metadata=${encodeURIComponent(JSON.stringify(metadata))}`}
           style={{
             background: "rgba(114, 109, 130, 0.5)",
             bottom: 0,
