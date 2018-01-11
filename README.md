@@ -46,6 +46,10 @@ class Example extends React.Component<{}, State> {
 
 ```jsx
 interface Props {
+  // Collector ID from Dovetail.
+  // Find this in your project’s collector settings.
+  collectorId: string;
+
   // Optional domain for where to fetch the dialog.
   // Defaults to dovetailapp.com.
   domain?: string;
@@ -60,10 +64,6 @@ interface Props {
   // Optional handler for send.
   // Called 10 seconds after the user clicks the send button.
   onSend?: () => void;
-
-  // Project ID from Dovetail.
-  // Find this from the project URL in Dovetail or collector settings.
-  projectId: string;
 }
 ```
 
