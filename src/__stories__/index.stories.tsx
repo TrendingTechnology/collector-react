@@ -39,8 +39,7 @@ storiesOf("Collector", module).add("Example", () => {
               onDismiss={() => {
                 this.setState({ feedback: false });
               }}
-              onSend={() => {console.log("onSend")}}
-              projectId="yourProjectId"
+              projectId="803ec120-8c53-11e7-a9d1-970b7ecc3ff8"
             />
           ) : null}
         </div>
