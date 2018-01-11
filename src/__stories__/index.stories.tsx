@@ -35,8 +35,7 @@ storiesOf("Collector", module).add("Example", () => {
           {this.state.feedback ? (
             <Collector
               collectorId="3d03f1a0-f698-11e7-8348-25337274b7c3"
-              domain="stg.dovetailapp.com"
-              metadata={{ email: "jane@example.com", name: "Jane Doe" }}
+              defaultEntries={{ email: "jane@example.com", name: "Jane Doe" }}
               onDismiss={() => {
                 this.setState({ feedback: false });
               }}

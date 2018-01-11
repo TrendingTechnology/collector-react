@@ -6,13 +6,13 @@ export interface Props {
   // Find this in your project’s collector settings.
   collectorId: string;
 
+  // Optional key:value pairs for setting default data.
+  // e.g. prefill user’s information if they’re logged in.
+  defaultEntries?: {[key: string]: string};
+
   // Optional domain for where to fetch the dialog.
   // Defaults to dovetailapp.com.
   domain?: string;
-
-  // Optional key:value pairs for setting default data.
-  // e.g. prefill user’s information if they’re logged in.
-  metadata?: {[key: string]: string};
 
   // Called when the user clicks the X icon to close the dialog.
   onDismiss: () => void;
@@ -36,13 +36,13 @@ export class Collector extends React.Component<Props> {
   }
 
   public render() {
-    const { collectorId, domain = "dovetailapp.com", metadata } = this.props;
+    const { collectorId, domain = "dovetailapp.com", defaultEntries } = this.props;
 
     return (
       <Portal>
         <iframe
           frameBorder={0}
-          src={`//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&metadata=${encodeURIComponent(JSON.stringify(metadata))}`}
+          src={`//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&defaultEntries=${encodeURIComponent(JSON.stringify(defaultEntries))}`}
           style={{
             background: "rgba(114, 109, 130, 0.5)",
             bottom: 0,
