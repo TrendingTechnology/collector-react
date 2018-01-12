@@ -2,13 +2,17 @@ import * as React from "react";
 import { Portal } from "./portal";
 
 export interface Props {
-  // Optional domain for where to fetch the dialog.
-  // Defaults to dovetailapp.com.
-  domain?: string;
+  // Collector ID from Dovetail.
+  // Find this in your project’s collector settings.
+  collectorId: string;
 
   // Optional key:value pairs for setting default data.
   // e.g. prefill user’s information if they’re logged in.
-  metadata?: {[key: string]: string};
+  defaultEntries?: {[key: string]: string};
+
+  // Optional domain for where to fetch the dialog.
+  // Defaults to dovetailapp.com.
+  domain?: string;
 
   // Called when the user clicks the X icon to close the dialog.
   onDismiss: () => void;
@@ -16,10 +20,6 @@ export interface Props {
   // Optional handler for send.
   // Called 10 seconds after the user clicks the send button.
   onSend?: () => void;
-
-  // Project ID from Dovetail.
-  // Find this from the project URL in Dovetail or collector settings.
-  projectId: string;
 }
 
 let nextId = 0;
@@ -36,13 +36,13 @@ export class Collector extends React.Component<Props> {
   }
 
   public render() {
-    const { domain = "dovetailapp.com", metadata, projectId } = this.props;
+    const { collectorId, domain = "dovetailapp.com", defaultEntries } = this.props;
 
     return (
       <Portal>
         <iframe
           frameBorder={0}
-          src={`//${domain}/embed/?pid=${projectId}&id=${this.id}&metadata=${JSON.stringify(metadata)}`}
+          src={`//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&defaultEntries=${encodeURIComponent(JSON.stringify(defaultEntries))}`}
           style={{
             background: "rgba(114, 109, 130, 0.5)",
             bottom: 0,

@@ -34,13 +34,11 @@ storiesOf("Collector", module).add("Example", () => {
 
           {this.state.feedback ? (
             <Collector
-              domain="localhost:3000"
-              metadata={{ email: "jane@example.com", name: "Jane Doe" }}
+              collectorId="3d03f1a0-f698-11e7-8348-25337274b7c3"
+              defaultEntries={{ email: "jane@example.com", name: "Jane Doe" }}
               onDismiss={() => {
                 this.setState({ feedback: false });
               }}
-              onSend={() => {console.log("onSend")}}
-              projectId="yourProjectId"
             />
           ) : null}
         </div>
