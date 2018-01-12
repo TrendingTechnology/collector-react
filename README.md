@@ -30,10 +30,10 @@ class Example extends React.Component<{}, State> {
 
         {this.state.feedback ? (
           <Collector
+            collectorId="yourCollectorId"
             onDismiss={() => {
               this.setState({ feedback: false });
             }}
-            projectId="yourProjectId"
           />
         ) : null}
       </div>
