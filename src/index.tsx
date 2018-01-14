@@ -1,4 +1,5 @@
 import * as React from "react";
+import { BodyOverflow } from "./bodyOverflow";
 import { Portal } from "./portal";
 
 export interface Props {
@@ -39,24 +40,26 @@ export class Collector extends React.Component<Props> {
     const { collectorId, domain = "dovetailapp.com", defaultEntries } = this.props;
 
     return (
-      <Portal>
-        <iframe
-          frameBorder={0}
-          src={`//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&defaultEntries=${encodeURIComponent(JSON.stringify(defaultEntries))}`}
-          style={{
-            background: "rgba(114, 109, 130, 0.5)",
-            bottom: 0,
-            border: 0,
-            height: "100vh",
-            position: "fixed",
-            right: 0,
-            left: 0,
-            top: 0,
-            width: "100vw",
-            zIndex: 2147483647
-          }}
-        />
-      </Portal>
+      <BodyOverflow>
+        <Portal>
+          <iframe
+            frameBorder={0}
+            src={`//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&defaultEntries=${encodeURIComponent(JSON.stringify(defaultEntries))}`}
+            style={{
+              background: "rgba(114, 109, 130, 0.5)",
+              bottom: 0,
+              border: 0,
+              height: "100vh",
+              position: "fixed",
+              right: 0,
+              left: 0,
+              top: 0,
+              width: "100vw",
+              zIndex: 2147483647
+            }}
+          />
+        </Portal>
+      </BodyOverflow>
     );
   }
 
