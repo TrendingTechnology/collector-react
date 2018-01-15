@@ -5,6 +5,7 @@
     "no-debugger": true,
     "no-floating-promises": true,
     "ordered-imports": true,
+    "prefer-readonly": true,
     "prefer-const": true,
     "variable-name": [true, "check-format", "allow-pascal-case"],
     "strict-boolean-expressions": true

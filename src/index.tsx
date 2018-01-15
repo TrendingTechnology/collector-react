@@ -26,7 +26,7 @@ export interface Props {
 let nextId = 0;
 
 export class Collector extends React.Component<Props> {
-  private id = nextId++;
+  private readonly id = nextId++;
 
   public componentDidMount() {
     window.addEventListener("message", this.receiveMessage, false);
@@ -63,7 +63,7 @@ export class Collector extends React.Component<Props> {
     );
   }
 
-  private receiveMessage = (event: MessageEvent) => {
+  private readonly receiveMessage = (event: MessageEvent) => {
     if (typeof event.data === "object" && event.data.id === this.id && event.data.name === "dovetail-collector") {
       switch (event.data.type) {
         case "dismiss": {
