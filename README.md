@@ -1,6 +1,6 @@
 # collector-react
 
-The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in [Dovetail](https://dovetailapp.com). You’ll need a project on Dovetail, along with its project ID (found in the URL or in [collector settings](https://dovetailapp.com/help/collector-customize)).
+The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in [Dovetail](https://dovetailapp.com). You’ll need a project on Dovetail, along with its collector ID (found in [collector settings](https://dovetailapp.com/help/collector-customize)).
 
 ![Collector demo](img/collector.gif?raw=true "Collector demo")
 
