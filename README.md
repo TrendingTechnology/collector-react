@@ -2,7 +2,7 @@
 
 The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in [Dovetail](https://dovetailapp.com). You’ll need a project on Dovetail, along with its collector ID (found in [collector settings](https://dovetailapp.com/help/collector-customize)).
 
-![Collector demo](img/demo.gif?raw=true "Collector demo")
+![Collector demo](img/collector.gif?raw=true "Collector demo")
 
 ## Installation
 
@@ -31,9 +31,11 @@ class Example extends React.Component<{}, State> {
         {this.state.feedback ? (
           <Collector
             collectorId="yourCollectorId"
+            defaultEntries={{ email: "foo@example.com" }}
             onDismiss={() => {
               this.setState({ feedback: false });
             }}
+            metadata={{ browser: navigator.userAgent }}
           />
         ) : null}
       </div>
@@ -45,18 +47,22 @@ class Example extends React.Component<{}, State> {
 ## Props
 
 ```jsx
-interface Props {
+export interface Props {
   // Collector ID from Dovetail.
   // Find this in your project’s collector settings.
   collectorId: string;
 
   // Optional key:value pairs for setting default data.
-  // e.g. prefill user’s information if they’re logged in.
+  // e.g. prefill user’s name and email if they’re logged in.
   defaultEntries?: {[key: string]: string};
 
   // Optional domain for where to fetch the dialog.
   // Defaults to dovetailapp.com.
   domain?: string;
+
+  // Optional key:value pairs for passing extra information.
+  // e.g. store browser version, local time, etc.
+  metadata?: {[key: string]: string};
 
   // Called when the user clicks the X icon to close the dialog.
   onDismiss: () => void;
