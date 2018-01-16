@@ -21,7 +21,7 @@
     "url": "https://github.com/heydovetail/collector-react.git"
   },
   "dependencies": {
-    "@heydovetail/tslint-config": "^0.1.2",
+    "@heydovetail/tslint-config": "^1.0.0",
     "@types/react-dom": "^16.0.3",
     "react": "^16.2.0",
     "tslib": "^1.8.1"
