@@ -48,7 +48,7 @@
     "webpack": "^3.10.0"
   },
   "author": "Benjamin Humphrey <benjamin@dovetailapp.com>",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/heydovetail/collector-react",
   "jest": {
     "globals": {
