@@ -2,10 +2,10 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 export class Portal extends React.Component {
-  private node: HTMLDivElement | null = null;
+  private node: HTMLDivElement | undefined;
 
   public componentWillUnmount() {
-    if (this.node != null) {
+    if (this.node !== undefined) {
       document.body.removeChild(this.node);
     }
   }
@@ -18,7 +18,7 @@ export class Portal extends React.Component {
       // `#render()` is called before `#componentDidMount()`, so we want to
       // create the node at this point so we can return a portal in the initial
       // render.
-      if (this.node == null) {
+      if (this.node === undefined) {
         this.node = document.body.appendChild(document.createElement("div"));
       }
       return ReactDOM.createPortal(this.props.children, this.node);
