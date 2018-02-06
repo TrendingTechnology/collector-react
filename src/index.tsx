@@ -9,7 +9,7 @@ export interface Props {
 
   // Optional key:value pairs for setting default data.
   // e.g. prefill user’s name and email if they’re logged in.
-  defaultEntries?: {[key: string]: string};
+  defaultEntries?: { [key: string]: string };
 
   // Optional domain for where to fetch the dialog.
   // Defaults to dovetailapp.com.
@@ -17,7 +17,7 @@ export interface Props {
 
   // Optional key:value pairs for passing extra information.
   // e.g. store browser version, local time, etc.
-  metadata?: {[key: string]: string};
+  metadata?: { [key: string]: string };
 
   // Called when the user clicks the X icon to close the dialog.
   onDismiss: () => void;
@@ -42,7 +42,27 @@ export class Collector extends React.Component<Props> {
 
   public render() {
     const { collectorId, domain = "dovetailapp.com", defaultEntries, metadata } = this.props;
-    const url = `//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&defaultEntries=${encodeURIComponent(JSON.stringify(defaultEntries))}&metadata=${encodeURIComponent(JSON.stringify(metadata))}`
+
+    // https: explicitly used here (as opposed to //) to allow the collector to
+    // be used in chrome-extension: pages.
+    let url = `https://${domain}/embed/?collectorId=${collectorId}&id=${this.id}`;
+
+    // There's a bug in the TypeScript typing for JSON.stringify (they claim it
+    // only returns string, but this case exists):
+    //
+    //     JSON.stringify(undefined) -> undefined
+    //
+    // See: https://github.com/Microsoft/TypeScript/issues/18879
+    //
+    // As such we need to be careful here to omit argments when they weren't
+    // provided through props.
+    if (defaultEntries !== undefined) {
+      url += `&defaultEntries=${encodeURIComponent(JSON.stringify(defaultEntries))}`;
+    }
+
+    if (metadata !== undefined) {
+      url += `&metadata=${encodeURIComponent(JSON.stringify(metadata))}`;
+    }
 
     return (
       <BodyOverflow>
