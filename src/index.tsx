@@ -42,10 +42,12 @@ export class Collector extends React.Component<Props> {
 
   public render() {
     const { collectorId, domain = "dovetailapp.com", defaultEntries, metadata } = this.props;
+    // Preserving http: is useful for local development.
+    const protocol = location.protocol === "http:" ? "http:" : "https:";
 
     // https: explicitly used here (as opposed to //) to allow the collector to
     // be used in chrome-extension: pages.
-    let url = `https://${domain}/embed/?collectorId=${collectorId}&id=${this.id}`;
+    let url = `${protocol}//${domain}/embed/?collectorId=${collectorId}&id=${this.id}`;
 
     // There's a bug in the TypeScript typing for JSON.stringify (they claim it
     // only returns string, but this case exists):
