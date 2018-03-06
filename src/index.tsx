@@ -30,7 +30,7 @@ export interface Props {
 let nextId = 0;
 
 export class Collector extends React.PureComponent<Props> {
-  private id = nextId++;
+  private readonly id = nextId++;
 
   public componentDidMount() {
     window.addEventListener("message", this.receiveMessage, false);
