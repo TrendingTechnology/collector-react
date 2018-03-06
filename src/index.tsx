@@ -9,7 +9,7 @@ export interface Props {
 
   // Optional key:value pairs for setting default data.
   // e.g. prefill user’s name and email if they’re logged in.
-  defaultEntries?: {[key: string]: string};
+  defaultEntries?: { [key: string]: string };
 
   // Optional domain for where to fetch the dialog.
   // Defaults to dovetailapp.com.
@@ -17,19 +17,19 @@ export interface Props {
 
   // Optional key:value pairs for passing extra information.
   // e.g. store browser version, local time, etc.
-  metadata?: {[key: string]: string};
+  metadata?: { [key: string]: string };
 
-  // Called when the user clicks the X icon to close the dialog.
-  onDismiss: () => void;
-
-  // Optional handler for send.
-  // Called 10 seconds after the user clicks the send button.
-  onSend?: () => void;
+  // Called when the user clicks the ‘X’ icon to close the dialog
+  // or the ‘Done’ button after successfully sending the form.
+  //
+  // Returns true or false depending on whether feedback was sucessfully sent
+  // or false if the user just closed the dialog without sending feedback.
+  onDismiss: (sent: boolean) => void;
 }
 
 let nextId = 0;
 
-export class Collector extends React.Component<Props> {
+export class Collector extends React.PureComponent<Props> {
   private id = nextId++;
 
   public componentDidMount() {
@@ -42,7 +42,9 @@ export class Collector extends React.Component<Props> {
 
   public render() {
     const { collectorId, domain = "dovetailapp.com", defaultEntries, metadata } = this.props;
-    const url = `//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&defaultEntries=${encodeURIComponent(JSON.stringify(defaultEntries))}&metadata=${encodeURIComponent(JSON.stringify(metadata))}`
+    const url = `//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&defaultEntries=${encodeURIComponent(
+      JSON.stringify(defaultEntries)
+    )}&metadata=${encodeURIComponent(JSON.stringify(metadata))}`;
 
     return (
       <BodyOverflow>
@@ -70,16 +72,7 @@ export class Collector extends React.Component<Props> {
 
   private receiveMessage = (event: MessageEvent) => {
     if (typeof event.data === "object" && event.data.id === this.id && event.data.name === "dovetail-collector") {
-      switch (event.data.type) {
-        case "dismiss": {
-          this.props.onDismiss();
-          break;
-        }
-        case "send": {
-          this.props.onSend != undefined ? this.props.onSend() : null;
-          break;
-        }
-      }
+      this.props.onDismiss(event.data.sent);
     }
   };
 }
