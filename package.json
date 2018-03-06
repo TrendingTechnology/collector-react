@@ -1,12 +1,13 @@
 {
   "name": "@heydovetail/collector-react",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in Dovetail.",
   "main": "./lib.commonjs/index.js",
   "module": "./lib.es2015/index.js",
+  "unpkg": "./lib.umd/index.js",
   "types": "./lib.es2015/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.lib.es2015.json && tsc -p tsconfig.lib.commonjs.json",
+    "build": "tsc -p tsconfig.lib.es2015.json && tsc -p tsconfig.lib.commonjs.json && tsc -p tsconfig.lib.umd.json",
     "prepublishOnly": "npm run build",
     "storybook": "ts-node ./node_modules/.bin/start-storybook -p 9003 -c .storybook",
     "test": "npm run test:lint && npm run test:jest",
@@ -20,8 +21,10 @@
     "url": "https://github.com/heydovetail/collector-react.git"
   },
   "dependencies": {
-    "tslib": "^1.8.1",
-    "react": "^16.2.0"
+    "@heydovetail/tslint-config": "^1.0.0",
+    "@types/react-dom": "^16.0.3",
+    "react": "^16.2.0",
+    "tslib": "^1.8.1"
   },
   "devDependencies": {
     "@storybook/addon-storyshots": "^3.3.3",
@@ -39,13 +42,13 @@
     "react-test-renderer": "^16.2.0",
     "ts-jest": "^22.0.0",
     "ts-node": "^4.1.0",
-    "tslint": "^5.8.0",
+    "tslint": "^5.9.1",
     "typescript": "^2.6.2",
     "typestyle": "^1.5.1",
     "webpack": "^3.10.0"
   },
   "author": "Benjamin Humphrey <benjamin@dovetailapp.com>",
-  "license": "Apache 2",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/heydovetail/collector-react",
   "jest": {
     "globals": {
