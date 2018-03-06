@@ -42,9 +42,29 @@ export class Collector extends React.PureComponent<Props> {
 
   public render() {
     const { collectorId, domain = "dovetailapp.com", defaultEntries, metadata } = this.props;
-    const url = `//${domain}/embed/?collectorId=${collectorId}&id=${this.id}&defaultEntries=${encodeURIComponent(
-      JSON.stringify(defaultEntries)
-    )}&metadata=${encodeURIComponent(JSON.stringify(metadata))}`;
+    // Preserving http: is useful for local development.
+    const protocol = location.protocol === "http:" ? "http:" : "https:";
+
+    // https: explicitly used here (as opposed to //) to allow the collector to
+    // be used in chrome-extension: pages.
+    let url = `${protocol}//${domain}/embed/?collectorId=${collectorId}&id=${this.id}`;
+
+    // There's a bug in the TypeScript typing for JSON.stringify (they claim it
+    // only returns string, but this case exists):
+    //
+    //     JSON.stringify(undefined) -> undefined
+    //
+    // See: https://github.com/Microsoft/TypeScript/issues/18879
+    //
+    // As such we need to be careful here to omit argments when they weren't
+    // provided through props.
+    if (defaultEntries !== undefined) {
+      url += `&defaultEntries=${encodeURIComponent(JSON.stringify(defaultEntries))}`;
+    }
+
+    if (metadata !== undefined) {
+      url += `&metadata=${encodeURIComponent(JSON.stringify(metadata))}`;
+    }
 
     return (
       <BodyOverflow>
@@ -70,7 +90,7 @@ export class Collector extends React.PureComponent<Props> {
     );
   }
 
-  private receiveMessage = (event: MessageEvent) => {
+  private readonly receiveMessage = (event: MessageEvent) => {
     if (typeof event.data === "object" && event.data.id === this.id && event.data.name === "dovetail-collector") {
       this.props.onDismiss(event.data.sent);
     }
