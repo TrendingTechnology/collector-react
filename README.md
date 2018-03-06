@@ -1,6 +1,6 @@
 # collector-react
 
-The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in [Dovetail](https://dovetailapp.com). You’ll need a project on Dovetail, along with its collector ID (found in [collector settings](https://dovetailapp.com/help/collector-customize)).
+The feedback collector is a simple form that helps you quickly gather user feedback from your own website or web app. When people fill out the form, their entries are saved as notes in [Dovetail](https://dovetailapp.com). You’ll need a project on Dovetail, along with its collector ID (found in [collector settings](https://dovetailapp.com/help/form-customize)).
 
 ![Collector demo](img/collector.gif?raw=true "Collector demo")
 
@@ -32,8 +32,8 @@ class Example extends React.Component<{}, State> {
           <Collector
             collectorId="yourCollectorId"
             defaultEntries={{ email: "foo@example.com" }}
-            onDismiss={() => {
-              this.setState({ feedback: false });
+            onDismiss={(sent: boolean) => {
+              sent ? console.log("Feedback sent!") : this.setState({ feedback: false });
             }}
             metadata={{ browser: navigator.userAgent }}
           />
@@ -42,7 +42,7 @@ class Example extends React.Component<{}, State> {
     );
   }
 }
-``` 
+```
 
 ## Props
 
@@ -54,7 +54,7 @@ export interface Props {
 
   // Optional key:value pairs for setting default data.
   // e.g. prefill user’s name and email if they’re logged in.
-  defaultEntries?: {[key: string]: string};
+  defaultEntries?: { [key: string]: string };
 
   // Optional domain for where to fetch the dialog.
   // Defaults to dovetailapp.com.
@@ -62,20 +62,20 @@ export interface Props {
 
   // Optional key:value pairs for passing extra information.
   // e.g. store browser version, local time, etc.
-  metadata?: {[key: string]: string};
+  metadata?: { [key: string]: string };
 
-  // Called when the user clicks the X icon to close the dialog.
-  onDismiss: () => void;
-
-  // Optional handler for send.
-  // Called 10 seconds after the user clicks the send button.
-  onSend?: () => void;
+  // Called when the user clicks the ‘X’ icon to close the dialog
+  // or the ‘Done’ button after successfully sending the form.
+  //
+  // Returns true or false depending on whether feedback was sucessfully sent
+  // or false if the user just closed the dialog without sending feedback.
+  onDismiss: (sent: boolean) => void;
 }
 ```
 
 ## Configuration
 
-Configure the look & feel in your Dovetail project. You can customize the color, text, where entries are saved, and more. Read the [customization documentation](https://dovetailapp.com/help/collector-customize) for more information.
+Configure the look & feel in your Dovetail project. You can customize the color, text, where entries are saved, and more. Read the [customization documentation](https://dovetailapp.com/help/form-customize) for more information.
 
 ## Build status
 

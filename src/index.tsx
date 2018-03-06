@@ -19,17 +19,17 @@ export interface Props {
   // e.g. store browser version, local time, etc.
   metadata?: { [key: string]: string };
 
-  // Called when the user clicks the X icon to close the dialog.
-  onDismiss: () => void;
-
-  // Optional handler for send.
-  // Called 10 seconds after the user clicks the send button.
-  onSend?: () => void;
+  // Called when the user clicks the ‘X’ icon to close the dialog
+  // or the ‘Done’ button after successfully sending the form.
+  //
+  // Returns true or false depending on whether feedback was sucessfully sent
+  // or false if the user just closed the dialog without sending feedback.
+  onDismiss: (sent: boolean) => void;
 }
 
 let nextId = 0;
 
-export class Collector extends React.Component<Props> {
+export class Collector extends React.PureComponent<Props> {
   private readonly id = nextId++;
 
   public componentDidMount() {
@@ -42,10 +42,12 @@ export class Collector extends React.Component<Props> {
 
   public render() {
     const { collectorId, domain = "dovetailapp.com", defaultEntries, metadata } = this.props;
+    // Preserving http: is useful for local development.
+    const protocol = location.protocol === "http:" ? "http:" : "https:";
 
     // https: explicitly used here (as opposed to //) to allow the collector to
     // be used in chrome-extension: pages.
-    let url = `https://${domain}/embed/?collectorId=${collectorId}&id=${this.id}`;
+    let url = `${protocol}//${domain}/embed/?collectorId=${collectorId}&id=${this.id}`;
 
     // There's a bug in the TypeScript typing for JSON.stringify (they claim it
     // only returns string, but this case exists):
@@ -90,16 +92,7 @@ export class Collector extends React.Component<Props> {
 
   private readonly receiveMessage = (event: MessageEvent) => {
     if (typeof event.data === "object" && event.data.id === this.id && event.data.name === "dovetail-collector") {
-      switch (event.data.type) {
-        case "dismiss": {
-          this.props.onDismiss();
-          break;
-        }
-        case "send": {
-          this.props.onSend !== undefined ? this.props.onSend() : null;
-          break;
-        }
-      }
+      this.props.onDismiss(event.data.sent);
     }
   };
 }
