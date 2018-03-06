@@ -33,8 +33,7 @@ class Example extends React.Component<{}, State> {
             collectorId="yourCollectorId"
             defaultEntries={{ email: "foo@example.com" }}
             onDismiss={(sent: boolean) => {
-              console.log("Feedback sent: ", sent);
-              this.setState({ feedback: false });
+              sent ? console.log("Feedback sent!") : this.setState({ feedback: false });
             }}
             metadata={{ browser: navigator.userAgent }}
           />
