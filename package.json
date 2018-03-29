@@ -27,6 +27,7 @@
     "tslib": "^1.8.1"
   },
   "devDependencies": {
+    "@heydovetail/editorconfig": "^2.0.0",
     "@storybook/addon-storyshots": "^3.3.3",
     "@storybook/react": "^3.3.3",
     "@types/jest": "^22.0.0",
