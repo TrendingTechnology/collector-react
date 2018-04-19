@@ -29,7 +29,7 @@
   "devDependencies": {
     "@heydovetail/editorconfig": "^2.0.0",
     "@storybook/addon-storyshots": "^3.3.3",
-    "@storybook/react": "^3.3.3",
+    "@storybook/react": "^3.4.2",
     "@types/jest": "^22.0.0",
     "@types/jsdom": "^11.0.2",
     "@types/storybook__react": "^3.0.5",
