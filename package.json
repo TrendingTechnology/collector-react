@@ -35,7 +35,7 @@
     "@types/storybook__react": "^3.0.5",
     "awesome-typescript-loader": "^3.2.3",
     "jest": "^22.0.3",
-    "jest-cli": "^22.0.3",
+    "jest-cli": "^23.0.1",
     "lint-staged": "^7.0.1",
     "prettier": "^1.9.2",
     "react": "^16.2.0",
