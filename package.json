@@ -33,7 +33,7 @@
     "@types/jest": "^22.0.0",
     "@types/jsdom": "^11.0.2",
     "@types/storybook__react": "^3.0.5",
-    "awesome-typescript-loader": "^3.2.3",
+    "awesome-typescript-loader": "^5.1.0",
     "jest": "^22.0.3",
     "jest-cli": "^22.0.3",
     "lint-staged": "^7.0.1",
