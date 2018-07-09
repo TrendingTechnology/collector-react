@@ -30,7 +30,7 @@
     "@heydovetail/tslint-config": "^2.1.0",
     "@storybook/addon-storyshots": "^3.3.3",
     "@storybook/react": "^3.4.2",
-    "@types/jest": "^22.0.0",
+    "@types/jest": "^23.1.5",
     "@types/jsdom": "^11.0.2",
     "@types/storybook__react": "^3.0.5",
     "awesome-typescript-loader": "^3.2.3",
